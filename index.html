@@ -2,314 +2,360 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Sistema Florería</title>
+<title>Sistema Florería Primavera - Pro</title>
 
 <style>
-*{box-sizing:border-box;font-family:Segoe UI;margin:0;padding:0}
+*{box-sizing:border-box;font-family:'Segoe UI', sans-serif;margin:0;padding:0}
 
 body{
-height:100vh;
-background:linear-gradient(120deg,#ff758c,#ff7eb3,#f6d365,#fda085);
-background-size:400% 400%;
-animation:fondo 12s ease infinite;
+    height:100vh;
+    background:linear-gradient(120deg,#ff758c,#ff7eb3,#f6d365,#fda085);
+    background-size:400% 400%;
+    animation:fondo 12s ease infinite;
+    overflow: hidden;
 }
 
 @keyframes fondo{
-0%{background-position:0% 50%}
-50%{background-position:100% 50%}
-100%{background-position:0% 50%}
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
 }
 
 #login{height:100vh;display:flex;justify-content:center;align-items:center}
 .card{
-background:rgba(255,255,255,0.95);
-padding:40px;
-border-radius:18px;
-width:370px;
-text-align:center;
-box-shadow:0 15px 35px rgba(0,0,0,.35)
+    background:rgba(255,255,255,0.95);
+    padding:40px;
+    border-radius:18px;
+    width:370px;
+    text-align:center;
+    box-shadow:0 15px 35px rgba(0,0,0,.35)
 }
-.card img{width:130px;margin-bottom:15px}
+.card img{width:110px;margin-bottom:15px; border-radius: 50%;}
 
-input,select{
-width:100%;
-padding:12px;
-margin:10px 0;
-border-radius:8px;
-border:1px solid #ccc
+input, select, textarea{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border-radius:8px;
+    border:1px solid #ccc;
+    outline: none;
 }
 
 button{
-width:100%;
-padding:12px;
-border:none;
-border-radius:10px;
-background:#ff4d6d;
-color:white;
-font-size:16px;
-cursor:pointer;
-transition:.3s
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    background:#ff4d6d;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:.3s;
 }
 
-button:hover{background:#d63384;transform:scale(1.03)}
+button:hover{background:#d63384;transform:scale(1.02)}
 
-#error{color:red;margin-top:10px}
+#error{color:red;margin-top:10px; font-size: 13px;}
 
 #dashboard{
-display:none;
-height:100vh;
-background:linear-gradient(135deg,#f6d365,#fda085,#ff9a9e,#fecfef);
-background-size:400% 400%;
-animation:fondo 15s ease infinite
+    display:none;
+    height:100vh;
+    background: #f4f7f6;
 }
 
 .header{
-background:#ff4d6d;
-color:white;
-padding:16px;
-text-align:center;
-font-size:22px;
-font-weight:bold
+    background:#ff4d6d;
+    color:white;
+    padding:15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size:20px;
+    font-weight:bold;
 }
 
-.container{display:flex;height:calc(100vh - 60px)}
+.user-info { font-size: 14px; background: rgba(0,0,0,0.1); padding: 5px 15px; border-radius: 20px; }
+
+.container{display:flex;height:calc(100vh - 55px)}
 
 .sidebar{
-width:240px;
-background:#2c2c2c;
-color:white;
-padding:20px
+    width:240px;
+    background:#2c2c2c;
+    color:white;
+    padding:20px;
 }
 
 .sidebar button{
-width:100%;
-margin:6px 0;
-background:#444;
-font-size:15px
+    width:100%;
+    margin:6px 0;
+    background:#444;
+    font-size:14px;
+    text-align: left;
+    padding-left: 15px;
 }
 
-.sidebar button:hover{
-background:#ff4d6d
-}
+.sidebar button:hover{ background:#ff4d6d; }
 
-.main{
-flex:1;
-padding:30px;
-overflow:auto
-}
+.main{ flex:1; padding:30px; overflow:auto; }
 
 .section{display:none}
 .section.active{display:block}
 
 .grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:20px;
-margin-top:20px
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+    margin-top:20px
 }
 
 .box{
-background:white;
-padding:25px;
-border-radius:14px;
-box-shadow:0 10px 25px rgba(0,0,0,.25);
-text-align:center
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,.05);
+    text-align:center
 }
 
-.table{width:100%;margin-top:15px;border-collapse:collapse;background:white}
-.table th,.table td{border:1px solid #ddd;padding:10px}
-.table th{background:#ff4d6d;color:white}
+.table{width:100%; border-collapse: collapse; margin-top: 15px; background: white;}
+.table th, .table td{border: 1px solid #ddd; padding: 12px; text-align: left;}
+.table th{background: #ff4d6d; color: white;}
 
-ul{margin-top:10px}
-li{margin:6px 0}
+.msg-item{background: #fff; padding: 10px; border-radius: 8px; margin-bottom: 10px; border-left: 4px solid #ff4d6d; box-shadow: 0 2px 5px rgba(0,0,0,0.1);}
+
+.logout-btn { background: #555 !important; margin-top: 20px; text-align: center !important; padding-left: 0 !important; }
 </style>
 </head>
 
 <body>
 
 <div id="login">
-<div class="card">
-<img src="https://tse1.mm.bing.net/th/id/OIP.wVpc1CJUv_CzfKjXU06X5AHaEs?rs=1&pid=ImgDetMain&o=7&rm=3">
-<h2>Florería Primavera</h2>
-
-<input id="user" placeholder="Usuario">
-<input id="pass" type="password" placeholder="Contraseña">
-
-<button onclick="login()">Ingresar</button>
-
-<p id="error"></p>
-</div>
+    <div class="card">
+        <img src="https://tse1.mm.bing.net/th/id/OIP.wVpc1CJUv_CzfKjXU06X5AHaEs?rs=1&pid=ImgDetMain&o=7&rm=3">
+        <h2>Florería Primavera</h2>
+        <p style="text-align:left; font-size:12px; color: #777; margin-top:10px; margin-left:5px">Usuario (Doble clic para ver lista):</p>
+        
+        <input list="listaUsuarios" id="userInput" placeholder="Escribe tu nombre..." autocomplete="off">
+        <datalist id="listaUsuarios">
+            <option value="admin">
+        </datalist>
+        
+        <input id="pass" type="password" placeholder="Contraseña">
+        <button onclick="login()">Entrar al Sistema</button>
+        <p id="error"></p>
+    </div>
 </div>
 
 <div id="dashboard">
+    <div class="header">
+        <span>🌸 Florería Primavera</span>
+        <span class="user-info" id="displayUser">...</span>
+    </div>
 
-<div class="header">🌸 Sistema de Gestión de Florería</div>
+    <div class="container">
+        <div class="sidebar">
+            <button class="admin-only" onclick="show('ventas')">📊 Ventas Globales</button>
+            <button class="admin-only" onclick="show('clientes')">👤 Clientes</button>
+            <button onclick="show('flores')">🌷 Registrar venta</button>
+            <button class="admin-only" onclick="show('agenda')">📅 Agenda</button>
+            <button class="admin-only" onclick="show('entregas')">🚚 Entregas</button>
+            <button onclick="show('personal')">👨‍💼 Mi Perfil</button>
+            <button onclick="show('mensajes')">💬 Mensajería</button>
+            <button onclick="show('pagos')">💳 Pagos</button>
+            <button class="logout-btn" onclick="logout()">Cerrar Sesión</button>
+        </div>
 
-<div class="container">
+        <div class="main">
+            <div id="ventas" class="section">
+                <h2>📊 Reporte General (Admin)</h2>
+                <div class="grid">
+                    <div class="box"><h3>Ventas</h3><b id="vCount" style="font-size: 24px;">0</b></div>
+                    <div class="box"><h3>Ingresos</h3><b id="iCount" style="font-size: 24px;">$0</b></div>
+                </div>
+                <table class="table">
+                    <thead><tr><th>Fecha</th><th>Vendedor</th><th>Producto</th><th>Monto</th><th>Pago</th></tr></thead>
+                    <tbody id="historialCuerpo"></tbody>
+                </table>
+            </div>
 
-<div class="sidebar">
-<button onclick="show('ventas')">📊 Ventas</button>
-<button onclick="show('clientes')">👤 Clientes</button>
-<button onclick="show('flores')">🌷 Registrar venta</button>
-<button onclick="show('agenda')">📅 Flores agendadas</button>
-<button onclick="show('entregas')">🚚 Por entregar</button>
-<button onclick="show('personal')">👨‍💼 Personal</button>
-<button onclick="show('mensajes')">💬 Mensajes</button>
-<button onclick="show('pagos')">💳 Pagos</button>
-</div>
+            <div id="flores" class="section">
+                <h2>🌷 Nueva Venta de Flores</h2>
+                <label>Seleccione el Arreglo:</label>
+                <select id="itemFlor">
+                    <option value="150">🌹 Ramo de Rosas Rojas ($150)</option>
+                    <option value="120">🌻 Canasta de Girasoles ($120)</option>
+                    <option value="180">🌷 Tulipanes de Holanda ($180)</option>
+                    <option value="200">🌸 Orquídeas Exóticas ($200)</option>
+                    <option value="140">💐 Ramo Primaveral ($140)</option>
+                    <option value="300">💎 Arreglo Gigante 50 Rosas ($300)</option>
+                </select>
+                <button onclick="registrarVenta()">Registrar Venta</button>
+            </div>
 
-<div class="main">
+            <div id="personal" class="section">
+                <h2>👨‍💼 Mi Perfil</h2>
+                <div class="box" style="text-align: left;">
+                    <p><strong>Nombre:</strong> <span id="pNombre"></span></p>
+                    <p><strong>Cargo:</strong> <span id="pCargo"></span></p>
+                </div>
+            </div>
 
-<div id="ventas" class="section active">
-<h2>Ventas del día</h2>
-<div class="grid">
-<div class="box">💐 Ramos vendidos<br><b id="vendidos">0</b></div>
-<div class="box">🚚 Pendientes<br><b id="pendientes">0</b></div>
-</div>
-</div>
+            <div id="mensajes" class="section">
+                <h2>💬 Chat Interno</h2>
+                <div id="listaMensajes" style="height: 200px; overflow-y: auto; background: #eee; padding: 10px; border-radius: 8px; margin-bottom:10px"></div>
+                <textarea id="msgTexto" placeholder="Escribe un mensaje..."></textarea>
+                <button onclick="enviarMensaje()">Enviar Mensaje</button>
+            </div>
 
-<div id="clientes" class="section">
-<input id="clienteNombre" placeholder="Nombre cliente">
-<button onclick="agregarCliente()">Añadir cliente</button>
-<table class="table" id="tablaClientes">
-<tr><th>Cliente</th><th>Acción</th></tr>
-</table>
-</div>
+            <div id="pagos" class="section">
+                <h2>💳 Procesar Pago</h2>
+                <p>Monto pendiente: <strong id="montoPendiente">$0</strong></p>
+                <select id="metodoPago">
+                    <option>💵 Efectivo</option>
+                    <option>💳 Tarjeta</option>
+                    <option>📱 Transferencia</option>
+                </select>
+                <button onclick="confirmarPago()">Confirmar Pago</button>
+            </div>
 
-<div id="flores" class="section">
-<select id="florSeleccion">
-<option>🌹 Rosas</option>
-<option>🌷 Tulipanes</option>
-<option>🌻 Girasoles</option>
-</select>
-<button onclick="venderFlor()">Registrar venta</button>
-</div>
-
-<div id="agenda" class="section"><h2>Agenda</h2></div>
-
-<div id="entregas" class="section">
-<ul id="listaEntregas"></ul>
-</div>
-
-<div id="personal" class="section"><h2>Personal</h2></div>
-
-<div id="mensajes" class="section">
-<h2>Mensajes</h2>
-<textarea style="width:100%;height:100px"></textarea>
-<button>Enviar mensaje</button>
-</div>
-
-<div id="pagos" class="section">
-<h2>Pagos</h2>
-<input placeholder="Monto">
-<select>
-<option>Efectivo</option>
-<option>Tarjeta</option>
-<option>Transferencia</option>
-</select>
-<button onclick="pagar()">Procesar pago</button>
-</div>
-
-</div>
-</div>
+            <div id="clientes" class="section"><h2>Clientes</h2></div>
+            <div id="agenda" class="section"><h2>Agenda</h2></div>
+            <div id="entregas" class="section"><h2>Entregas</h2></div>
+        </div>
+    </div>
 </div>
 
 <script>
+let ultimaVentaTemporal = null;
 
-let vendidos=0
-let pendientes=0
-let esAdmin=false
-
-function login(){
-
-let user=document.getElementById('user').value.trim()
-let pass=document.getElementById('pass').value.trim()
-
-if((user==='florista' && pass==='rosas2026') || (user==='admin' && pass==='admin123')){
-esAdmin=true
-entrar()
+window.onload = function() {
+    renderizarListaUsuarios();
+    cargarVentasAdmin();
+    renderizarMensajes();
+    
+    const sUser = localStorage.getItem('sesion_activa');
+    const sAdmin = localStorage.getItem('sesion_rol');
+    if(sUser) configDashboard(sUser, sAdmin === 'true');
 }
 
-else if(user==='cliente' && pass==='cliente'){
-esAdmin=false
-entrar()
+// LOGICA DE LISTA DE USUARIOS (DATALIST)
+function renderizarListaUsuarios() {
+    const dl = document.getElementById('listaUsuarios');
+    dl.innerHTML = '<option value="admin">';
+    let db = JSON.parse(localStorage.getItem('db_usuarios_flor')) || [];
+    db.forEach(u => {
+        if(u.toLowerCase() !== 'admin') {
+            let opt = document.createElement('option');
+            opt.value = u;
+            dl.appendChild(opt);
+        }
+    });
 }
 
-else{
-document.getElementById('error').innerText='Usuario o contraseña incorrectos'
+function login() {
+    const user = document.getElementById('userInput').value.trim();
+    const pass = document.getElementById('pass').value.trim();
+    const error = document.getElementById('error');
+
+    if(!user) return;
+
+    const isAdmin = (user.toLowerCase() === 'admin' && pass === 'admin123');
+    const isUser = (pass === 'flores2026');
+
+    if(isAdmin || isUser) {
+        if(!isAdmin) {
+            let db = JSON.parse(localStorage.getItem('db_usuarios_flor')) || [];
+            if(!db.includes(user)) {
+                db.push(user);
+                localStorage.setItem('db_usuarios_flor', JSON.stringify(db));
+                renderizarListaUsuarios();
+            }
+        }
+        localStorage.setItem('sesion_activa', user);
+        localStorage.setItem('sesion_rol', isAdmin);
+        configDashboard(user, isAdmin);
+    } else {
+        error.innerText = "Contraseña incorrecta";
+    }
 }
 
+function configDashboard(nombre, isAdmin) {
+    document.getElementById('login').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'block';
+    document.getElementById('displayUser').innerText = "👤 " + nombre;
+    document.getElementById('pNombre').innerText = nombre;
+    document.getElementById('pCargo').innerText = isAdmin ? "Administrador" : "Personal de Ventas";
+
+    const botonesAdmin = document.querySelectorAll('.admin-only');
+    botonesAdmin.forEach(b => b.style.display = isAdmin ? 'block' : 'none');
+
+    show(isAdmin ? 'ventas' : 'flores');
 }
 
-function entrar(){
-
-document.getElementById('login').style.display='none'
-document.getElementById('dashboard').style.display='block'
-
-// 🔒 OCULTAR SOLO FUNCIONES ADMIN
-if(!esAdmin){
-
-document.querySelector("button[onclick=\"show('ventas')\"]").style.display='none'
-document.querySelector("button[onclick=\"show('clientes')\"]").style.display='none'
-document.querySelector("button[onclick=\"show('agenda')\"]").style.display='none'
-document.querySelector("button[onclick=\"show('entregas')\"]").style.display='none'
-
-// 💳 PAGOS YA NO SE OCULTA
-
+// FUNCIONES DE NEGOCIO
+function registrarVenta() {
+    const select = document.getElementById('itemFlor');
+    ultimaVentaTemporal = {
+        flor: select.options[select.selectedIndex].text,
+        monto: select.value,
+        vendedor: localStorage.getItem('sesion_activa'),
+        fecha: new Date().toLocaleString()
+    };
+    document.getElementById('montoPendiente').innerText = "$" + select.value;
+    alert("Venta iniciada. Ve a PAGOS.");
+    show('pagos');
 }
 
+function confirmarPago() {
+    if(!ultimaVentaTemporal) return;
+    const ventaFinal = {...ultimaVentaTemporal, metodo: document.getElementById('metodoPago').value};
+    let historial = JSON.parse(localStorage.getItem('historial_global')) || [];
+    historial.push(ventaFinal);
+    localStorage.setItem('historial_global', JSON.stringify(historial));
+    ultimaVentaTemporal = null;
+    cargarVentasAdmin();
+    alert("✅ Venta Guardada");
+    show('flores');
+}
+
+function cargarVentasAdmin() {
+    let historial = JSON.parse(localStorage.getItem('historial_global')) || [];
+    const cuerpo = document.getElementById('historialCuerpo');
+    let total = 0;
+    cuerpo.innerHTML = "";
+    historial.forEach(v => {
+        cuerpo.innerHTML += `<tr><td>${v.fecha}</td><td>${v.vendedor}</td><td>${v.flor}</td><td>$${v.monto}</td><td>${v.metodo}</td></tr>`;
+        total += parseInt(v.monto);
+    });
+    document.getElementById('vCount').innerText = historial.length;
+    document.getElementById('iCount').innerText = "$" + total;
+}
+
+function enviarMensaje() {
+    const texto = document.getElementById('msgTexto').value;
+    if(!texto) return;
+    let msgs = JSON.parse(localStorage.getItem('chat_global')) || [];
+    msgs.push({user: localStorage.getItem('sesion_activa'), texto: texto, hora: new Date().toLocaleTimeString()});
+    localStorage.setItem('chat_global', JSON.stringify(msgs));
+    document.getElementById('msgTexto').value = "";
+    renderizarMensajes();
+}
+
+function renderizarMensajes() {
+    const cont = document.getElementById('listaMensajes');
+    let msgs = JSON.parse(localStorage.getItem('chat_global')) || [];
+    cont.innerHTML = msgs.map(m => `<div class="msg-item"><strong>${m.user}:</strong> ${m.texto}</div>`).join('');
 }
 
 function show(id){
-document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'))
-document.getElementById(id).classList.add('active')
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
 }
 
-function agregarCliente(){
-
-if(!esAdmin){
-alert("❌ Solo admin")
-return
+function logout() {
+    localStorage.removeItem('sesion_activa');
+    localStorage.removeItem('sesion_rol');
+    location.reload();
 }
-
-let nombre=document.getElementById('clienteNombre').value
-if(nombre==='') return
-
-let tabla=document.getElementById('tablaClientes')
-let row=tabla.insertRow()
-
-row.insertCell(0).innerText=nombre
-
-let btn=document.createElement('button')
-btn.innerText='Eliminar'
-btn.onclick=function(){row.remove()}
-
-row.insertCell(1).appendChild(btn)
-
-}
-
-function venderFlor(){
-
-let flor=document.getElementById('florSeleccion').value
-
-let li=document.createElement('li')
-li.innerText=flor
-
-document.getElementById('listaEntregas').appendChild(li)
-
-vendidos++
-pendientes++
-
-document.getElementById('vendidos').innerText=vendidos
-document.getElementById('pendientes').innerText=pendientes
-
-}
-
-// 💳 TODOS PUEDEN PAGAR
-function pagar(){
-alert("✅ Pago realizado correctamente")
-}
-
 </script>
 
 </body>
